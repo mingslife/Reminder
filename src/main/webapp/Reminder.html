@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Reminder</title>
+	<style type="text/css">
+body, p {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #eee url(reminder.png) no-repeat fixed top;
+	background-size: auto 100%;
+}
+.container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.time {
+	font-family: serif;
+	text-align: center;
+}
+#time {
+	font-size: 240px;
+	color: #555;
+	text-shadow: 0 0 30px #777;
+}
+#day {
+	font-size: 72px;
+	color: #777;
+	text-shadow: 0 0 10px #999;
+}
+.form {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	z-index: 10;
+}
+.form input {
+	box-sizing: border-box;
+	width: 600px;
+	height: 60px;
+	border: none;
+	border-radius: 30px;
+	box-shadow: 0 0 15px #ccc;
+	outline: none;
+	background-color: #fff;
+	padding: 30px;
+	font-size: 30px;
+	color: #999;
+	font-family: serif;
+}
+.message {
+	position: absolute;
+	padding: 10px;
+	font-family: serif;
+	font-size: 18px;
+	color: #999;
+}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="time">
+		<p id="time">00:00:00</p>
+		<p id="day">1970.01.01</p>
+	</div>
+</div>
+
+<!-- <div class="form">
+	<input type="text" />
+</div> -->
+
+<div class="message">
+	<p>Ming set a task on 2016/10/01 12:00:00.</p>
+	<p>Ming received a task on 2016/10/01 01:00:00.</p>
+</div>
+
+<script type="text/javascript">
+window.onload = function() {
+	setInterval(function() {
+		var now = new Date();
+		var hour = now.getHours();
+		var minute = now.getMinutes();
+		var second = now.getSeconds();
+		var time = (hour < 10 ? "0" : "") + hour + ":" + (minute < 10 ? "0" : "") + minute + ":" + (second < 10 ? "0" : "") + second;
+		document.getElementById("time").innerText = time;
+		var year = now.getFullYear();
+		var month = now.getMonth() + 1;
+		var date = now.getDate();
+		var day = year + "." + (month < 10 ? "0" : "") + month + "." + (date < 10 ? "0" : "") + date;
+		document.getElementById("day").innerText = day;
+	}, 100);
+};
+</script>
+</body>
+</html>
